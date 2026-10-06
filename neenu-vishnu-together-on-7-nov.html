@@ -126,6 +126,28 @@ body{overflow-x:hidden}
  .page-inner{padding-bottom:95px}
  .nav{bottom:20px}
 }
+
+/* Venue sketch */
+.venue-sketch{width:100%;max-width:330px;height:auto;display:block;margin:0 auto 6px;overflow:visible}
+.venue-sketch path,.venue-sketch use{fill:none;stroke:var(--rose-dark);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.venue-sketch .thin{stroke-width:1.2}
+.venue-sketch .drape,.venue-sketch .heart{stroke:var(--rose);stroke-width:1.4}
+.venue-sketch .drape{fill:#fbecea}.venue-sketch .heart{fill:#f3d3d3}
+.venue-sketch .chairs use{stroke:var(--gold);stroke-width:1.5}
+.venue-sketch .draw{stroke-dasharray:700;stroke-dashoffset:700}
+.page.active .venue-sketch .draw{animation:sketchDraw 2.8s ease forwards}
+.page.active .venue-sketch .heart{animation:sketchDraw 2.8s ease forwards,heartFloat 3.5s ease-in-out 2.8s infinite}
+.venue-sketch .bulbs circle{animation:twinkle 2.2s ease-in-out infinite;filter:drop-shadow(0 0 3px #f6c86b)}
+.venue-sketch .bulbs circle:nth-child(2n){animation-delay:.7s}
+.venue-sketch .bulbs circle:nth-child(3n){animation-delay:1.4s}
+.venue-sub{font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);margin:-4px 0 12px}
+@keyframes sketchDraw{to{stroke-dashoffset:0}}
+@keyframes twinkle{50%{opacity:.35}}
+@keyframes heartFloat{50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){
+  .venue-sketch .draw{stroke-dasharray:none;stroke-dashoffset:0;animation:none!important}
+  .venue-sketch .bulbs circle{animation:none}
+}
 </style>
 </head>
 <body>
@@ -195,14 +217,60 @@ body{overflow-x:hidden}
       <div class="page-inner">
         <div class="kicker">Celebration Location</div>
         <div class="location-card">
-          <div class="pin">⌖</div>
-          <div class="location-title">Venue</div>
+          <svg class="venue-sketch" viewBox="0 0 320 200" role="img" aria-label="Sketch of an outdoor wedding venue with palms, a floral arch and string lights">
+            <defs>
+              <g id="chair"><path d="M0 0V13M0 8H7V13M7 8V4"/></g>
+            </defs>
+            <!-- sky glow -->
+            <circle cx="160" cy="70" r="62" fill="var(--soft)" opacity=".7"/>
+            <!-- heart above the arch -->
+            <path class="draw heart" d="M160 34c-4-7-14-4-11 4 2 5 11 10 11 10s9-5 11-10c3-8-7-11-11-4z" fill="#f3d3d3"/>
+            <!-- ground -->
+            <path class="draw" d="M8 178Q160 168 312 178" stroke="var(--gold)"/>
+            <path class="draw thin" d="M24 182l3-6 2 6M70 180l2-5 2 5M250 180l2-5 2 5M292 182l3-6 2 6" stroke="var(--gold)"/>
+            <!-- left coconut palm -->
+            <path class="draw" d="M44 178C46 140 50 100 58 62"/>
+            <path class="draw thin" d="M47 160h5M48 140h5M50 120h5M53 100h5M55 82h5"/>
+            <path class="draw" d="M58 62C42 52 26 56 16 70M58 62C46 44 30 40 20 44M58 62C62 42 76 32 92 34M58 62C76 54 94 60 102 74M58 62C56 46 50 34 40 28"/>
+            <circle cx="56" cy="67" r="3" fill="var(--gold)" opacity=".8"/><circle cx="62" cy="68" r="3" fill="var(--gold)" opacity=".8"/>
+            <!-- right coconut palm -->
+            <path class="draw" d="M282 178C280 140 274 98 264 58"/>
+            <path class="draw thin" d="M275 160h5M273 140h5M271 120h5M268 100h5M266 80h5"/>
+            <path class="draw" d="M264 58C280 48 296 52 306 66M264 58C276 40 292 36 302 40M264 58C260 38 246 28 230 30M264 58C246 50 228 56 220 70M264 58C266 42 272 30 282 24"/>
+            <circle cx="262" cy="63" r="3" fill="var(--gold)" opacity=".8"/><circle cx="268" cy="64" r="3" fill="var(--gold)" opacity=".8"/>
+            <!-- string lights -->
+            <path class="draw thin" d="M60 76Q86 104 112 86M208 86Q236 104 262 72" stroke="var(--gold)"/>
+            <g class="bulbs" fill="#f6c86b">
+              <circle cx="72" cy="88" r="2.6"/><circle cx="86" cy="94" r="2.6"/><circle cx="100" cy="93" r="2.6"/>
+              <circle cx="220" cy="93" r="2.6"/><circle cx="234" cy="94" r="2.6"/><circle cx="248" cy="87" r="2.6"/>
+            </g>
+            <!-- floral arch / canopy -->
+            <path class="draw" d="M112 178V86M208 178V86M112 86Q160 46 208 86"/>
+            <path class="draw drape" d="M112 90Q136 116 160 92Q184 116 208 90" fill="#fbecea"/>
+            <path class="draw thin" d="M112 90Q106 120 116 150M208 90Q214 120 204 150"/>
+            <g fill="var(--rose)">
+              <circle cx="116" cy="80" r="4"/><circle cx="130" cy="68" r="3.5"/><circle cx="146" cy="61" r="4"/>
+              <circle cx="174" cy="61" r="4"/><circle cx="190" cy="68" r="3.5"/><circle cx="204" cy="80" r="4"/>
+            </g>
+            <g fill="var(--gold)"><circle cx="160" cy="60" r="4.5"/><circle cx="123" cy="74" r="2"/><circle cx="197" cy="74" r="2"/><circle cx="138" cy="63" r="2"/><circle cx="182" cy="63" r="2"/></g>
+            <!-- aisle with petals -->
+            <path class="draw thin" d="M150 176L156 118M170 176L164 118" stroke="var(--gold)"/>
+            <g fill="var(--rose)" opacity=".75"><circle cx="158" cy="168" r="1.6"/><circle cx="163" cy="158" r="1.4"/><circle cx="159" cy="146" r="1.4"/><circle cx="161" cy="134" r="1.2"/><circle cx="160" cy="124" r="1"/></g>
+            <!-- chairs -->
+            <g class="chairs">
+              <use href="#chair" x="122" y="148"/><use href="#chair" x="134" y="148"/>
+              <use href="#chair" x="118" y="162"/><use href="#chair" x="131" y="162"/>
+              <use href="#chair" x="178" y="148"/><use href="#chair" x="190" y="148"/>
+              <use href="#chair" x="181" y="162"/><use href="#chair" x="194" y="162"/>
+            </g>
+          </svg>
+          <div class="location-title">Village Canopy</div>
+          <div class="venue-sub">Outdoor Wedding Venue<br>Kochi · Kerala</div>
           <div class="location-note">
-            We are looking forward to welcoming you.<br><br>
-            <strong>Venue details will be updated here.</strong><br>
-            <span style="font-size:12px">Replace this text with the engagement venue and address.</span>
+            Under the palms and the open sky,<br>
+            we are looking forward to welcoming you.
           </div>
-          <a class="map-btn" href="#" onclick="return false">OPEN LOCATION</a>
+          <a class="map-btn" href="https://maps.app.goo.gl/goANPcwefh8hTx42A" target="_blank" rel="noopener">OPEN IN GOOGLE MAPS</a>
         </div>
         <div class="ornament">❦</div>
         <div class="small">07 November 2026</div>
