@@ -118,6 +118,8 @@ body{overflow-x:hidden}
  .page-inner{padding-bottom:95px}
 }
 
+.date-time{font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--rose-dark);margin:6px 0 20px}
+
 /* Venue sketch */
 .venue-sketch{width:100%;max-width:330px;height:auto;display:block;margin:0 auto 6px;overflow:visible}
 .venue-sketch path,.venue-sketch use{fill:none;stroke:var(--rose-dark);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -191,6 +193,7 @@ body{overflow-x:hidden}
         <div class="kicker">Counting Down to Our Day</div>
         <div class="date">07</div>
         <div class="date-sub">November · 2026</div>
+        <div class="date-time">5:00 PM onwards</div>
         <div class="countdown">
           <div class="timebox"><div class="num" id="days">--</div><div class="label">Days</div></div>
           <div class="timebox"><div class="num" id="hours">--</div><div class="label">Hours</div></div>
@@ -264,7 +267,7 @@ body{overflow-x:hidden}
           <a class="map-btn" href="https://maps.app.goo.gl/goANPcwefh8hTx42A" target="_blank" rel="noopener">OPEN IN GOOGLE MAPS</a>
         </div>
         <div class="ornament">❦</div>
-        <div class="small">07 November 2026</div>
+        <div class="small">07 November 2026 · 5:00 PM onwards</div>
       </div>
       <div class="footer">Come celebrate with us</div>
     </section>
@@ -281,7 +284,7 @@ body{overflow-x:hidden}
           even more special.
         </div>
         <div class="names" style="font-size:clamp(48px,13vw,78px);margin-top:20px">Neenu &amp; Vishnu</div>
-        <div class="small" style="margin-top:18px;color:#806963">See you on 07 November 2026</div>
+        <div class="small" style="margin-top:18px;color:#806963">See you on 07 November 2026<br>from 5:00 PM onwards</div>
       </div>
       <div class="footer">With love, from us &amp; our families</div>
     </section>
@@ -363,7 +366,7 @@ window.addEventListener('touchend',e=>{
   }
 },{passive:true});
 
-const target=new Date('2026-11-07T00:00:00');
+const target=new Date('2026-11-07T17:00:00+05:30');
 
 function countdown(){
   const diff=Math.max(0,target-new Date());
