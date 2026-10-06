@@ -109,14 +109,6 @@ body{overflow-x:hidden}
 .invite-title{font-size:clamp(35px,10vw,58px);color:var(--rose-dark);font-weight:400}
 .invite-text{font-size:18px;line-height:1.8;max-width:430px}
 .footer{position:absolute;bottom:27px;left:0;right:0;font:11px Arial,sans-serif;letter-spacing:2px;color:#a0867d;text-transform:uppercase}
-.nav{
- position:fixed;z-index:20;bottom:16px;left:50%;transform:translateX(-50%);
- display:flex;gap:7px;padding:8px 12px;background:rgba(255,255,255,.9);
- border-radius:30px;box-shadow:0 8px 25px rgba(60,35,35,.14);backdrop-filter:blur(10px)
-}
-.dot{width:8px;height:8px;border:0;border-radius:50%;background:#d9bfc0;padding:0;cursor:pointer;transition:.3s}
-.dot.active{width:23px;border-radius:8px;background:var(--rose)}
-.hint{position:fixed;z-index:10;top:16px;right:18px;font:10px Arial,sans-serif;letter-spacing:1px;color:#9b7b74}
 .tap{position:fixed;z-index:10;bottom:55px;left:50%;transform:translateX(-50%);font:10px Arial,sans-serif;color:#a2877e;letter-spacing:1px;animation:pulse 1.8s infinite}
 @keyframes pulse{50%{opacity:.35}}
 .spark{position:absolute;width:5px;height:5px;background:#d7ad63;border-radius:50%;animation:float 5s infinite ease-in-out;opacity:.45}
@@ -124,7 +116,6 @@ body{overflow-x:hidden}
 @keyframes float{50%{transform:translateY(-20px) scale(1.5);opacity:.8}}
 @media(min-width:700px){
  .page-inner{padding-bottom:95px}
- .nav{bottom:20px}
 }
 
 /* Venue sketch */
@@ -297,25 +288,11 @@ body{overflow-x:hidden}
 
   </div>
 
-  <div class="hint">TAP / SWIPE</div>
   <div class="tap">Scroll down to continue ↓</div>
-  <div class="nav" id="nav"></div>
 </div>
 
 <script>
 const pages=[...document.querySelectorAll('.page')];
-const nav=document.getElementById('nav');
-
-pages.forEach((page,i)=>{
-  const b=document.createElement('button');
-  b.className='dot'+(i===0?' active':'');
-  b.setAttribute('aria-label','Go to page '+(i+1));
-  b.onclick=()=>page.scrollIntoView({behavior:'smooth',block:'start'});
-  nav.appendChild(b);
-});
-
-const dots=[...nav.children];
-
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting && entry.intersectionRatio >= .55){
@@ -323,10 +300,6 @@ const observer=new IntersectionObserver(entries=>{
 
       pages.forEach((page,n)=>{
         page.classList.toggle('active',n===i);
-      });
-
-      dots.forEach((dot,n)=>{
-        dot.classList.toggle('active',n===i);
       });
     }
   });
