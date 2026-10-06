@@ -120,6 +120,15 @@ body{overflow-x:hidden}
 
 .date-time{font-family:Arial,sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--rose-dark);margin:6px 0 20px}
 
+.rings-sketch{width:120px;height:auto;margin:6px auto 4px;display:block;overflow:visible}
+.rings-sketch .draw{fill:none;stroke:var(--rose-dark);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:160;stroke-dashoffset:160}
+.rings-sketch .gold{stroke:var(--gold)}
+.rings-sketch .gem{fill:#f3d3d3;stroke:var(--rose)}
+.page.active .rings-sketch .draw{animation:sketchDraw 2s ease forwards}
+@media (prefers-reduced-motion:reduce){.rings-sketch .draw{stroke-dasharray:none;stroke-dashoffset:0;animation:none!important}}
+
+.tap.gone{opacity:0;animation:none;pointer-events:none}
+
 /* Venue sketch */
 .venue-sketch{width:100%;max-width:330px;height:auto;display:block;margin:0 auto 6px;overflow:visible}
 .venue-sketch path,.venue-sketch use{fill:none;stroke:var(--rose-dark);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -289,6 +298,28 @@ body{overflow-x:hidden}
       <div class="footer">With love, from us &amp; our families</div>
     </section>
 
+    <section class="page" data-page="6">
+      <div class="flower f2">✿</div><div class="flower f3">❀</div>
+      <div class="spark s1"></div><div class="spark s4"></div>
+      <div class="page-inner">
+        <div class="kicker">With Gratitude</div>
+        <svg class="rings-sketch" viewBox="0 0 120 70" aria-hidden="true">
+          <circle class="draw" cx="46" cy="40" r="22"/>
+          <circle class="draw gold" cx="74" cy="40" r="22"/>
+          <path class="draw gem" d="M40 14l6-8 6 8-6 6z"/>
+        </svg>
+        <div class="invite-title">Thank You</div>
+        <div class="ornament">✦ ♡ ✦</div>
+        <div class="invite-text">
+          for being a part of our story.<br>
+          Your love and blessings<br>
+          mean the world to us.
+        </div>
+        <div class="names" style="font-size:clamp(42px,11vw,66px);margin-top:20px">Neenu &amp; Vishnu</div>
+      </div>
+      <div class="footer">Forever grateful</div>
+    </section>
+
   </div>
 
   <div class="tap">Scroll down to continue ↓</div>
@@ -304,6 +335,8 @@ const observer=new IntersectionObserver(entries=>{
       pages.forEach((page,n)=>{
         page.classList.toggle('active',n===i);
       });
+
+      document.querySelector('.tap').classList.toggle('gone',i===pages.length-1);
     }
   });
 },{threshold:[.55,.75]});
